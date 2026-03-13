@@ -2,7 +2,7 @@
 
 A local-first tracker for exploring the full YC Library in random order without losing your progress.
 
-![YC Library Atlas screenshot](docs/atlas-home.png)
+![YC Library Atlas demo screenshot](docs/atlas-demo.png)
 
 ## What It Is
 
