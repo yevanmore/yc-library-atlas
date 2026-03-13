@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YC Library Atlas</title>
+    <meta
+      name="description"
+      content="A persistent YC Library ledger for random wandering, saved progress, and English practice prompts."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23103c53'/%3E%3Cpath d='M16 16h31v8H29l9 8v4l-9 8h18v8H16v-8h12l-9-8v-4l9-8H16z' fill='%23f5efe3'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">YC Library Atlas</p>
+          <h1>Roam first. Keep the record.</h1>
+          <p class="lede">
+            Open YC Library however you want, in whatever order your mood
+            wants. This page keeps a persistent ledger of what you have seen
+            and finished, with an optional draw and an optional spine only when
+            you want a nudge.
+          </p>
+        </div>
+        <div class="hero-side">
+          <div id="heroStats" class="hero-stats"></div>
+          <p id="buildStamp" class="build-stamp"></p>
+        </div>
+      </header>
+
+      <main class="main-grid">
+        <section class="panel controls-panel">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">Rhythm</p>
+              <h2>Set the frame, not the leash</h2>
+            </div>
+            <button id="jumpToActiveDay" class="ghost-button" type="button">
+              Jump to route
+            </button>
+          </div>
+
+          <div class="controls-grid">
+            <label class="control-field">
+              <span>Route start date</span>
+              <input id="startDate" type="date" />
+            </label>
+
+            <label class="control-field">
+              <span>Cards at a time</span>
+              <select id="itemsPerDay">
+                <option value="1">1 item</option>
+                <option value="2">2 items</option>
+                <option value="3">3 items</option>
+                <option value="4">4 items</option>
+              </select>
+            </label>
+
+            <label class="control-field">
+              <span>Optional spine order</span>
+              <select id="orderingMode">
+                <option value="video-first">Video first</option>
+                <option value="curriculum-first">Curriculum first</option>
+                <option value="balanced">Balanced</option>
+              </select>
+            </label>
+
+            <label class="control-switch">
+              <input id="weekdaysOnly" type="checkbox" />
+              <span>Weekdays only route</span>
+            </label>
+          </div>
+
+          <div class="toolbar-row">
+            <button id="resetProgress" class="secondary-button" type="button">
+              Reset history
+            </button>
+            <div class="toolbar-stack">
+              <p class="toolbar-note">
+                Your ledger is the main thing. These controls only shape the
+                optional draw and fallback route.
+              </p>
+              <p id="saveStatus" class="toolbar-note toolbar-status"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">Dashboard</p>
+              <h2>What your wandering looks like</h2>
+            </div>
+          </div>
+          <div id="overviewGrid" class="overview-grid"></div>
+        </section>
+
+        <div class="split-grid">
+          <section id="todayPanel" class="panel"></section>
+          <section id="englishPanel" class="panel"></section>
+        </div>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">Roadmap</p>
+              <h2>Seven phases across the full library</h2>
+            </div>
+          </div>
+          <div id="phaseGrid" class="phase-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">Fallback Spine</p>
+              <h2>A route for days when you want structure</h2>
+            </div>
+            <p id="scheduleSummary" class="section-meta"></p>
+          </div>
+          <div id="scheduleMap" class="schedule-map"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">Catalog</p>
+              <h2>Search the entire library</h2>
+            </div>
+            <p id="catalogCount" class="section-meta"></p>
+          </div>
+
+          <div class="catalog-filters">
+            <label class="control-field search-field">
+              <span>Search</span>
+              <input
+                id="catalogSearch"
+                type="search"
+                placeholder="Search titles, authors, categories"
+              />
+            </label>
+
+            <label class="control-field">
+              <span>Media</span>
+              <select id="catalogMedia">
+                <option value="all">All media</option>
+                <option value="Video">Video</option>
+                <option value="Blog">Blog</option>
+                <option value="External">External</option>
+              </select>
+            </label>
+
+            <label class="control-field">
+              <span>Phase</span>
+              <select id="catalogPhase">
+                <option value="all">All phases</option>
+              </select>
+            </label>
+
+            <label class="control-field">
+              <span>Status</span>
+              <select id="catalogStatus">
+                <option value="all">All items</option>
+                <option value="fresh">Unseen</option>
+                <option value="sampled">Seen / logged</option>
+                <option value="todo">Not done</option>
+                <option value="done">Done</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="catalogList" class="catalog-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./yc-library-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
